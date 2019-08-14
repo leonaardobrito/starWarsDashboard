@@ -1,0 +1,150 @@
+<div class="container">
+
+  <!-- Left side menu -->
+  <aside>
+    <div class="logo-wrapper">
+      <img src="/assets/img/logo.png" id="logo-img">
+      <div id="divider"></div>
+    </div>
+
+    <div class="div-menu">
+      <div class="btn-wrapper">
+        <img src="/assets/img/dashboard.png" class="sidemenu-content" id="dashboard-img">
+        <h3 class="sidemenu-content text" id="dashboard-btn">Dashboard</h3>
+      </div>
+
+      <div class="btn-wrapper">
+        <img src="/assets/img/personagens.png" class="sidemenu-content" id="personagens-img">
+        <h3 class="sidemenu-content text">Pensonagens</h3>
+      </div>
+      <div class="btn-wrapper">
+        <img src="/assets/img/planets.png" class="sidemenu-content" id="planets-img">
+        <h3 class="sidemenu-content text">Planetas e luas</h3>
+      </div>
+      <div class="btn-wrapper">
+        <img src="/assets/img/naves.png" class="sidemenu-content" id="naves-img">
+        <h3 class="sidemenu-content text">Naves espaciais</h3>
+      </div>
+      <div class="btn-wrapper">
+        <img src="/assets/img/filmes.png" class="sidemenu-content" id="filmes-img">
+        <h3 class="sidemenu-content text">Filmes</h3>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Top menu -->
+  <mat-toolbar color="white">
+    <mat-toolbar-row>
+      <span class="example-spacer"></span>
+      <span matBadge="1" matBadgeSize="small" matBadgeOverlap="true"><img src="/assets/img/bell.png" alt="notification"
+          id="bell"></span>
+      <span matBadge="6" matBadgeSize="small" matBadgeOverlap="true"><img src="/assets/img/message.png" alt="messages"
+          id="message"></span>
+      <mat-divider class="style-fix" [vertical]="true"></mat-divider>
+      <img src="/assets/img/profile-pic.png" alt="profile picture" id="profile-pic">
+      <p id="user-name">Luke Skywalker</p>
+      <i class="material-icons" id="down-arrow">
+        keyboard_arrow_down
+      </i>
+      <mat-divider class="style-fix" [vertical]="true"></mat-divider>
+      <i class="material-icons" id="menu">
+        menu
+      </i>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <!-- Where am I? -->
+  <header>
+    <p id="dashboard-header">Dashboard</p>
+    <p id="pg-inicial">Página inicial > Dashboard</p>
+  </header>
+
+  <!-- Dashboard place-->
+  <main>
+    <!-- <div class="div-table-cards"> -->
+    <div id="card-personages">
+      <p class="card-number">30</p>
+      <img src="/assets/img/personagens.png" alt="personagens" id="img-personagem">
+      <p class="card-text">Personagens principais</p>
+    </div>
+
+    <div id="card-planetas">
+      <p class="card-number" id="num-planetas">56</p>
+      <img src="/assets/img/planets.png" alt="planetas" id="img-planetas">
+      <p class="card-text" id="text-planetas">Planetas</p>
+
+      <mat-divider id="divider" class="style-fix" [vertical]="true"></mat-divider>
+
+      <p class="card-number" id="num-luas">8</p>
+      <img src="/assets/img/luas.png" alt="luas" id="img-luas">
+      <p class="card-text" id="text-luas">Luas</p>
+    </div>
+
+    <div id="card-naves">
+      <p class="card-number">22</p>
+      <img src="/assets/img/naves.png" alt="naves" id="img-naves">
+      <p class="card-text">Naves super potentes</p>
+    </div>
+
+    <div class="tabela">
+       <i class="material-icons" id="lista">format_list_bulleted</i> <p id="personagens">Ficha dos personagens</p>
+   
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)">
+        <i class="material-icons" matSuffix>search</i>
+      </mat-form-field>
+
+      <table mat-table [dataSource]="dataSource" id="tabela">
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef id="Header_name"> Nome </th>
+          <td mat-cell *matCellDef="let element" class="Name"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="height">
+          <th mat-header-cell *matHeaderCellDef> Altura </th>
+          <td mat-cell *matCellDef="let element"> {{element.height/100}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="mass">
+          <th mat-header-cell *matHeaderCellDef> Peso </th>
+          <td mat-cell *matCellDef="let element"> {{element.mass}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="hair_color">
+          <th mat-header-cell *matHeaderCellDef> Cor do cabelo </th>
+          <td mat-cell *matCellDef="let element"> {{element.hair_color}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="birth_year">
+          <th mat-header-cell *matHeaderCellDef> Ano de nascimento </th>
+          <td mat-cell *matCellDef="let element"> {{element.birth_year}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="homeworld">
+          <th mat-header-cell *matHeaderCellDef> Planeta de nascimento </th>
+          <td mat-cell *matCellDef="let element" class="Home"> {{element.homeworld}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="films">
+          <th mat-header-cell *matHeaderCellDef> Filmes que participa </th>
+          <td mat-cell *matCellDef="let element"> {{element.films.length}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+    <div class="div-chart">
+        <div id="chartContainer" style="height: 370px; width: 100%; margin-left:auto;margin-right:auto;"></div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <mat-divider class="style-fix" id="divider-footer"></mat-divider>
+    <p id="text-footer">Desafio dashboard - Star Wars | 2018</p>
+  </footer>
+</div>

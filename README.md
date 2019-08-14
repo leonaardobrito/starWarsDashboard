@@ -6,6 +6,7 @@ In order to run this code, don't forget to download dapendencies:
 		npm install
 
 and to run:
+
 		ng serve
 
 
